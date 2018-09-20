@@ -1,0 +1,18 @@
+/usr/local/Cellar/mosquitto/1.5.1/bin
+
+./mosquitto_sub -t topic/test
+
+./mosquitto_pub -t topic/test -m "shoot"
+
+
+
+/usr/local/Cellar/mosquitto/1.5.1/sbin
+
+./mosquitto -c ../mosquitto.conf
+
+conf -
+
+listener 1883
+listener 1884
+protocol websockets
+
