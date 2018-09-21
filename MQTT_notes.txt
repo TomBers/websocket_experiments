@@ -10,6 +10,9 @@
 
 ./mosquitto -c ../mosquitto.conf
 
+./mosquitto_sub -t '$SYS/broker/clients/active'
+
+
 conf -
 
 listener 1883

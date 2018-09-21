@@ -14,7 +14,7 @@ defmodule Socketserver.Application do
       supervisor(SocketserverWeb.Endpoint, []),
       # Start your own worker by calling: Socketserver.Worker.start_link(arg1, arg2, arg3)
        worker(Socketserver.Worker, []),
-       worker(MQTT, []),
+#       worker(MQTT, []),
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
