@@ -9,13 +9,12 @@ defmodule MqttHandler do
   alias __MODULE__, as: State
 
   def init(opts) do
-    IO.inspect(opts)
-    Logger.info("Initializing handler")
-    {:ok, Map.put(%{}, :id, List.last(opts))}
+#    Logger.info("Initializing handler")
+    {:ok, %{id: List.last(opts).id, pid: List.last(opts).pid}}
   end
 
   def connection(:up, state) do
-    Logger.info("Connection has been established")
+#    Logger.info("Connection has been established")
     {:ok, state}
   end
 
@@ -30,7 +29,7 @@ defmodule MqttHandler do
   end
 
   def subscription(:up, topic, state) do
-    Logger.info("Subscribed to #{topic}")
+#    Logger.info("Subscribed to #{topic}")
     {:ok, state}
   end
 
@@ -45,14 +44,13 @@ defmodule MqttHandler do
   end
 
   def subscription(:down, topic, state) do
-    Logger.info("Unsubscribed from #{topic}")
+#    Logger.info("Unsubscribed from #{topic}")
     {:ok, state}
   end
 
   def handle_message(topic, publish, state) do
-    pid = Process.whereis(:wsq)
-    Socketserver.Worker.add_to_queue(pid, state.id)
-    Logger.info("#{state.id} - #{Enum.join(topic, "/")} #{inspect(publish)}")
+    Socketserver.Worker.add_to_queue(state.pid, state.id)
+#    Logger.info("#{state.id} - #{Enum.join(topic, "/")} #{inspect(publish)}")
     {:ok, state}
   end
 
