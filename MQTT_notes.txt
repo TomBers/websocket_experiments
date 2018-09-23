@@ -19,3 +19,9 @@ listener 1883
 listener 1884
 protocol websockets
 
+
+ssh -i "~/Downloads/emq_server.pem" ubuntu@ec2-18-130-103-115.eu-west-2.compute.amazonaws.com
+
+scp -i emq_server.pem emqx-ubuntu18.04-v3.0-beta.3.zip ubuntu@ec2-18-130-103-115.eu-west-2.compute.amazonaws.com:/home/ubuntu
+
+./mosquitto_sub -h 18.130.103.115 -t topic/test --insecure
